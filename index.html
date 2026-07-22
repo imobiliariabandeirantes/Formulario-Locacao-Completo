@@ -359,6 +359,32 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
 .aviso-pendencias.completo {
   color: var(--verde);
 }
+.nota-obrigatoria {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--amarelo-dk);
+  background: #fff6e8;
+  border: 1px solid #f0d6a0;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.opcao-desabilitada {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.doc-item-nota-dispensa {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--verde);
+  background: #eaf6ea;
+  border: 1px solid #b9dcb9;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
 .btn {
   border: none;
   border-radius: 10px;
@@ -378,6 +404,16 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
 .btn-baixar:hover { background: var(--primario2); }
 .btn-whats { background: #25D366; color: #fff; }
 .btn-whats:hover { background: #1ebc59; }
+.card-carregar { border-color: var(--fundo3); }
+.carregar-texto { font-size: 0.87rem; color: var(--texto2); line-height: 1.5; margin-bottom: 14px; }
+.btn-carregar {
+  background: var(--branco);
+  color: var(--primario);
+  border: 1.5px solid var(--primario);
+  flex: none;
+  max-width: none;
+}
+.btn-carregar:hover { background: var(--fundo2); }
 
 .rodape-obs {
   text-align: center;
@@ -394,7 +430,7 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
   <div class="brand">
     <div style="background:#fff;border-radius:8px;padding:4px 8px;display:flex;align-items:center"><img src="data:image/png;base64,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" style="height:52px;width:auto;object-fit:contain" alt="Imobiliária Bandeirantes"></div>
     <div>
-      <h1>Formulário para Locação <span class="versao">v2.24</span></h1>
+      <h1>Formulário para Locação <span class="versao">v2.28</span></h1>
       <div class="sub">Imobiliária Bandeirantes</div>
     </div>
   </div>
@@ -406,6 +442,20 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
     Preencha os campos abaixo com calma. Ao final, você pode <b>baixar um arquivo</b> com os dados
     preenchidos e/ou <b>enviar diretamente pelo WhatsApp</b> para a imobiliária. Campos com nome
     e telefone do locatário principal são obrigatórios.
+  </div>
+
+  <div class="card card-carregar">
+    <div class="card-body">
+      <div class="carregar-texto">
+        📤 <strong>Já tem um formulário preenchido?</strong> Carregue o PDF para recuperar os dados e
+        continuar de onde parou — útil para complementar com mais um locatário/fiador ou corrigir
+        alguma informação. Funciona com PDFs gerados por este sistema (recupera também os documentos
+        anexados) e também com PDFs de outros formulários de locação compatíveis (recupera os dados,
+        mas os documentos precisam ser anexados novamente).
+      </div>
+      <button type="button" class="btn btn-carregar" id="btn_carregar" onclick="document.getElementById('input_carregar_formulario').click()">📤 Carregar Formulário (PDF)</button>
+      <input type="file" id="input_carregar_formulario" accept="application/pdf" style="display:none" onchange="processarCarregarFormulario(this.files)">
+    </div>
   </div>
 
   <!-- UTILIZAÇÃO DO IMÓVEL -->
@@ -486,6 +536,7 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
           <label class="opcao"><input type="radio" name="qtd_locatarios" value="1" onchange="atualizarQtd('locatarios')"> 01</label>
           <label class="opcao"><input type="radio" name="qtd_locatarios" value="2" onchange="atualizarQtd('locatarios')"> 02</label>
         </div>
+        <div class="nota-obrigatoria" id="nota_conjuge_locatarios" style="display:none">🔒 Obrigatório incluir o Locatário (2) — cônjuge — pois o locatário é casado(a) em locação residencial.</div>
       </div>
 
       <div class="subbloco" id="loc1_bloco">
@@ -511,11 +562,11 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
         <div class="field-group">
           <label>Estado civil</label>
           <div class="opcoes" data-radio-group="loc1_estado_civil">
-            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Solteiro(a)"> Solteiro(a)</label>
-            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Casado(a)"> Casado(a)</label>
-            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Separado(a)"> Separado(a)</label>
-            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Divorciado(a)"> Divorciado(a)</label>
-            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Viúvo(a)"> Viúvo(a)</label>
+            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Solteiro(a)" onchange="atualizarConjugeObrigatorio()"> Solteiro(a)</label>
+            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Casado(a)" onchange="atualizarConjugeObrigatorio()"> Casado(a)</label>
+            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Separado(a)" onchange="atualizarConjugeObrigatorio()"> Separado(a)</label>
+            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Divorciado(a)" onchange="atualizarConjugeObrigatorio()"> Divorciado(a)</label>
+            <label class="opcao"><input type="radio" name="loc1_estado_civil" value="Viúvo(a)" onchange="atualizarConjugeObrigatorio()"> Viúvo(a)</label>
           </div>
         </div>
       </div>
@@ -549,6 +600,7 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
             <label class="opcao"><input type="radio" name="loc2_estado_civil" value="Divorciado(a)"> Divorciado(a)</label>
             <label class="opcao"><input type="radio" name="loc2_estado_civil" value="Viúvo(a)"> Viúvo(a)</label>
           </div>
+          <div class="nota-obrigatoria" id="nota_estado_civil_loc2" style="display:none">🔒 Travado em Casado(a): o Locatário (2) foi incluído como cônjuge do Locatário (1).</div>
         </div>
       </div>
 
@@ -566,6 +618,7 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
           <label class="opcao"><input type="radio" name="qtd_fiadores" value="1" onchange="atualizarQtd('fiadores')"> 01</label>
           <label class="opcao"><input type="radio" name="qtd_fiadores" value="2" onchange="atualizarQtd('fiadores')"> 02</label>
         </div>
+        <div class="nota-obrigatoria" id="nota_conjuge_fiadores" style="display:none">🔒 Obrigatório incluir o Fiador (2) — cônjuge — pois o fiador é casado(a).</div>
       </div>
 
       <div class="subbloco" id="fiador1_bloco">
@@ -591,11 +644,11 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
         <div class="field-group">
           <label>Estado civil</label>
           <div class="opcoes" data-radio-group="fiador1_estado_civil">
-            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Solteiro(a)"> Solteiro(a)</label>
-            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Casado(a)"> Casado(a)</label>
-            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Separado(a)"> Separado(a)</label>
-            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Divorciado(a)"> Divorciado(a)</label>
-            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Viúvo(a)"> Viúvo(a)</label>
+            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Solteiro(a)" onchange="atualizarConjugeObrigatorio()"> Solteiro(a)</label>
+            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Casado(a)" onchange="atualizarConjugeObrigatorio()"> Casado(a)</label>
+            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Separado(a)" onchange="atualizarConjugeObrigatorio()"> Separado(a)</label>
+            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Divorciado(a)" onchange="atualizarConjugeObrigatorio()"> Divorciado(a)</label>
+            <label class="opcao"><input type="radio" name="fiador1_estado_civil" value="Viúvo(a)" onchange="atualizarConjugeObrigatorio()"> Viúvo(a)</label>
           </div>
         </div>
       </div>
@@ -629,6 +682,7 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
             <label class="opcao"><input type="radio" name="fiador2_estado_civil" value="Divorciado(a)"> Divorciado(a)</label>
             <label class="opcao"><input type="radio" name="fiador2_estado_civil" value="Viúvo(a)"> Viúvo(a)</label>
           </div>
+          <div class="nota-obrigatoria" id="nota_estado_civil_fiador2" style="display:none">🔒 Travado em Casado(a): o Fiador (2) foi incluído como cônjuge do Fiador (1).</div>
         </div>
       </div>
 
@@ -670,6 +724,14 @@ textarea { resize: vertical; min-height: 70px; line-height: 1.5; }
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<!-- pdf.js: usado só para LER o texto de PDFs vindos de outros formulários (que não
+     guardam os dados anexados como este sistema faz) — ver carregarFormularioDePdf() -->
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script>
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+  }
+</script>
 <script>
 const LOGO_BASE64 = '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';
 const LOGO_MIME = 'image/png';
@@ -773,21 +835,22 @@ function valoresSelecionados(grupo) {
 // ---------- DOCUMENTOS: estado e montagem dinâmica dos itens ----------
 const documentosState = {};
 
-function criarItemDocumento(chave, label) {
-  documentosState[chave] = { modo: null, arquivos: [] };
+function criarItemDocumento(chave, label, notaDispensa) {
+  documentosState[chave] = { modo: null, arquivos: [], dispensado: false };
 
   const wrap = document.createElement('div');
   wrap.className = 'doc-item';
   wrap.id = 'docitem_' + chave;
   wrap.innerHTML =
     '<div class="doc-item-label">' + label + '</div>' +
-    '<div class="opcoes" data-radio-group="modo_' + chave + '">' +
+    '<div class="opcoes" data-radio-group="modo_' + chave + '" id="opcoes_' + chave + '">' +
       '<label class="opcao"><input type="radio" name="modo_' + chave + '" value="anexar"> 📎 Anexar Arquivo(s)</label>' +
       '<label class="opcao"><input type="radio" name="modo_' + chave + '" value="foto"> 📷 Tirar Foto</label>' +
       '<label class="opcao"><input type="radio" name="modo_' + chave + '" value="nao_possui"> 🚫 Não possui</label>' +
     '</div>' +
     '<div class="doc-item-acao" id="acao_' + chave + '" style="display:none"></div>' +
-    '<div class="doc-item-lista" id="lista_' + chave + '"></div>';
+    '<div class="doc-item-lista" id="lista_' + chave + '"></div>' +
+    (notaDispensa ? '<div class="doc-item-nota-dispensa" id="nota_dispensa_' + chave + '" style="display:none">' + notaDispensa + '</div>' : '');
 
   wrap.querySelectorAll('input[name="modo_' + chave + '"]').forEach(radio => {
     radio.addEventListener('change', () => {
@@ -798,6 +861,29 @@ function criarItemDocumento(chave, label) {
   });
 
   return wrap;
+}
+
+// dispensa (ou reativa) a exigência de um documento — usado quando o
+// Locatário/Fiador (2) é um cônjuge incluído por obrigatoriedade e já
+// existe a mesma certidão de casamento anexada para a pessoa (1)
+function definirDispensaDocumento(chave, dispensado) {
+  const estado = documentosState[chave];
+  if (!estado || estado.dispensado === dispensado) return;
+  estado.dispensado = dispensado;
+  if (dispensado) {
+    estado.modo = null;
+    estado.arquivos = [];
+    document.querySelectorAll('input[name="modo_' + chave + '"]').forEach(r => {
+      r.checked = false;
+      const op = r.closest('.opcao');
+      if (op) op.classList.remove('marcada');
+    });
+    renderizarAcaoDoc(chave);
+    renderizarListaDoc(chave);
+  }
+  definirDisplay('opcoes_' + chave, !dispensado);
+  definirDisplay('nota_dispensa_' + chave, dispensado);
+  atualizarEstadoBotoes();
 }
 
 function selecionarModoDoc(chave, modo) {
@@ -885,7 +971,13 @@ function montarDocumentos() {
     titulo.textContent = rotuloPessoa;
     grupo.appendChild(titulo);
     itensPessoa.forEach(([sufixo, label]) => {
-      grupo.appendChild(criarItemDocumento(prefixo + '_' + sufixo, label));
+      let notaDispensa = null;
+      if (sufixo === 'civil' && prefixo === 'loc2') {
+        notaDispensa = '✅ Dispensado: mesma certidão de casamento já anexada do Locatário (1) — cônjuge.';
+      } else if (sufixo === 'civil' && prefixo === 'fiador2') {
+        notaDispensa = '✅ Dispensado: mesma certidão de casamento já anexada do Fiador (1) — cônjuge.';
+      }
+      grupo.appendChild(criarItemDocumento(prefixo + '_' + sufixo, label, notaDispensa));
     });
     cont.appendChild(grupo);
   };
@@ -907,9 +999,70 @@ montarDocumentos();
 // mostra/oculta o comprovante de endereço do locatário conforme a utilização (só para comercial)
 function atualizarUtilizacao() {
   definirDisplay('docitem_loc_residencial', radioValor('utilizacao_imovel') === 'Comercial');
+  atualizarConjugeObrigatorio();
   atualizarEstadoBotoes();
 }
 atualizarUtilizacao();
+
+// ── Regra: Locatário/Fiador (2) obrigatório quando a pessoa (1) é casada ──
+// Locação RESIDENCIAL + Locatário (1) casado(a) => Locatário (2) [cônjuge] obrigatório.
+// Fiador (1) casado(a) => Fiador (2) [cônjuge] obrigatório, independente de Residencial/Comercial.
+// Em ambos os casos, como o Locatário/Fiador (2) é o cônjuge, a certidão de
+// casamento já anexada para a pessoa (1) é a mesma — não é exigida de novo.
+function atualizarConjugeObrigatorio() {
+  const locObrigatorio = radioValor('utilizacao_imovel') === 'Residencial' && radioValor('loc1_estado_civil') === 'Casado(a)';
+  aplicarTravaConjuge('qtd_locatarios', locObrigatorio, 'nota_conjuge_locatarios');
+  definirDispensaDocumento('loc2_civil', locObrigatorio);
+  travarEstadoCivil('loc2_estado_civil', 'Casado(a)', locObrigatorio, 'nota_estado_civil_loc2');
+
+  const fiadorObrigatorio = radioValor('fiador1_estado_civil') === 'Casado(a)';
+  aplicarTravaConjuge('qtd_fiadores', fiadorObrigatorio, 'nota_conjuge_fiadores');
+  definirDispensaDocumento('fiador2_civil', fiadorObrigatorio);
+  travarEstadoCivil('fiador2_estado_civil', 'Casado(a)', fiadorObrigatorio, 'nota_estado_civil_fiador2');
+}
+
+// quando a pessoa (2) é obrigatória por ser cônjuge, o estado civil dela já
+// vem marcado como Casado(a) e fica travado (não dá pra escolher outro)
+function travarEstadoCivil(nomeGrupo, valorTravado, travar, idNota) {
+  const inputs = document.querySelectorAll('input[name="' + nomeGrupo + '"]');
+  inputs.forEach(inp => {
+    inp.disabled = travar;
+    const label = inp.closest('.opcao');
+    if (label) label.classList.toggle('opcao-desabilitada', travar && inp.value !== valorTravado);
+  });
+  if (travar) {
+    const alvo = document.querySelector('input[name="' + nomeGrupo + '"][value="' + valorTravado + '"]');
+    if (alvo && !alvo.checked) {
+      alvo.checked = true;
+      alvo.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+  if (idNota) definirDisplay(idNota, travar);
+}
+
+function aplicarTravaConjuge(nomeRadio, obrigatorio, idNota) {
+  const opcaoUm = document.querySelector('input[name="' + nomeRadio + '"][value="1"]');
+  const opcaoDois = document.querySelector('input[name="' + nomeRadio + '"][value="2"]');
+
+  if (obrigatorio) {
+    if (opcaoDois && !opcaoDois.checked) {
+      opcaoDois.checked = true;
+      opcaoDois.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    if (opcaoUm) {
+      opcaoUm.disabled = true;
+      const label = opcaoUm.closest('.opcao');
+      if (label) label.classList.add('opcao-desabilitada');
+    }
+  } else if (opcaoUm) {
+    opcaoUm.disabled = false;
+    const label = opcaoUm.closest('.opcao');
+    if (label) label.classList.remove('opcao-desabilitada');
+  }
+
+  definirDisplay(idNota, obrigatorio);
+}
+atualizarConjugeObrigatorio();
 
 function v(id) {
   const el = document.getElementById(id);
@@ -1351,8 +1504,64 @@ async function construirPDF() {
   await inserirDocumento('fiador_residencial', 'Comprovante Residencial (Fiador)');
   await inserirDocumento('fiador_garantia', 'Comprovante Imóvel Garantia');
 
+  // ── Anexa os dados do formulário + arquivos originais dos documentos ──
+  // Isso permite que o botão "Carregar Formulário" releia este mesmo PDF
+  // depois e repreencha tudo automaticamente (ver carregarFormularioDePdf).
+  await anexarDadosParaRecarga(pdfDoc);
+
   const bytes = await pdfDoc.save();
   return { bytes, avisos };
+}
+
+async function anexarDadosParaRecarga(pdfDoc) {
+  const dados = coletarDadosFormulario();
+  dados.documentos = {};
+  Object.keys(documentosState).forEach(chave => {
+    const estado = documentosState[chave];
+    dados.documentos[chave] = { modo: estado.modo || null, dispensado: !!estado.dispensado };
+  });
+
+  const jsonBytes = new TextEncoder().encode(JSON.stringify(dados));
+  await pdfDoc.attach(jsonBytes, 'dados_formulario.json', {
+    mimeType: 'application/json',
+    description: 'Dados do formulário (uso interno do sistema — não editar)'
+  });
+
+  for (const chave of Object.keys(documentosState)) {
+    const estado = documentosState[chave];
+    const arquivos = estado.arquivos || [];
+    for (let idx = 0; idx < arquivos.length; idx++) {
+      const arquivo = arquivos[idx];
+      const bytesArquivo = new Uint8Array(await arquivo.arrayBuffer());
+      const nomeSeguro = (arquivo.name || ('arquivo_' + idx)).replace(/[^\w.\-]/g, '_');
+      await pdfDoc.attach(bytesArquivo, 'doc__' + chave + '__' + idx + '__' + nomeSeguro, {
+        mimeType: arquivo.type || 'application/octet-stream'
+      });
+    }
+  }
+}
+
+// coleta todos os valores atuais do formulário (textos, radios e checkboxes)
+// para serem anexados ao PDF e usados depois pelo "Carregar Formulário"
+function coletarDadosFormulario() {
+  const dados = { textos: {}, radios: {}, checkboxes: {} };
+
+  document.querySelectorAll('.main input[id]').forEach(el => {
+    if (el.type === 'radio' || el.type === 'checkbox' || el.type === 'file') return;
+    dados.textos[el.id] = el.value;
+  });
+
+  const nomesRadio = new Set();
+  document.querySelectorAll('.main input[type="radio"][name]').forEach(el => nomesRadio.add(el.name));
+  nomesRadio.forEach(nome => { dados.radios[nome] = radioValor(nome); });
+
+  const nomesCheckbox = new Set();
+  document.querySelectorAll('.main input[type="checkbox"][name]').forEach(el => nomesCheckbox.add(el.name));
+  nomesCheckbox.forEach(nome => {
+    dados.checkboxes[nome] = Array.from(document.querySelectorAll('.main input[name="' + nome + '"]:checked')).map(i => i.value);
+  });
+
+  return dados;
 }
 
 function nomeArquivoBase() {
@@ -1471,7 +1680,9 @@ function listarPendentes() {
     if (campo.grupo) return !algumSelecionado(campo.grupo);
     if (campo.docChave) {
       const estado = documentosState[campo.docChave];
-      if (!estado || !estado.modo) return true;
+      if (!estado) return true;
+      if (estado.dispensado) return false;
+      if (!estado.modo) return true;
       if ((estado.modo === 'anexar' || estado.modo === 'foto') && estado.arquivos.length === 0) return true;
       return false;
     }
@@ -1588,6 +1799,274 @@ function enviarWhatsApp() {
   const numero = '5519987835485'; // +55 19 98783-5485
   const url = 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto);
   window.open(url, '_blank');
+}
+
+// ---------- CARREGAR FORMULÁRIO: lê um PDF gerado por este sistema e repreenche tudo ----------
+
+function restaurarTextos(dados) {
+  Object.keys(dados.textos || {}).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = dados.textos[id];
+  });
+  // a grade de dias de pagamento é um widget visual à parte do input escondido
+  const diaSalvo = dados.textos && dados.textos['dia_pagamento'];
+  document.querySelectorAll('#dias_grid .dia-opcao').forEach(btn => {
+    btn.classList.toggle('selecionado', !!diaSalvo && btn.textContent.trim() === diaSalvo);
+  });
+}
+
+function restaurarRadiosECheckboxes(dados) {
+  Object.keys(dados.radios || {}).forEach(nome => {
+    const valor = dados.radios[nome];
+    document.querySelectorAll('input[name="' + nome + '"]').forEach(inp => {
+      inp.checked = !!valor && inp.value === valor;
+      const op = inp.closest('.opcao');
+      if (op) op.classList.toggle('marcada', inp.checked);
+    });
+  });
+  Object.keys(dados.checkboxes || {}).forEach(nome => {
+    const valores = dados.checkboxes[nome] || [];
+    document.querySelectorAll('input[name="' + nome + '"]').forEach(inp => {
+      inp.checked = valores.includes(inp.value);
+      const op = inp.closest('.opcao');
+      if (op) op.classList.toggle('marcada', inp.checked);
+    });
+  });
+}
+
+function adivinharMimePorNome(nome) {
+  const ext = (nome.split('.').pop() || '').toLowerCase();
+  const mapa = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', pdf: 'application/pdf', heic: 'image/heic', heif: 'image/heif' };
+  return mapa[ext] || 'application/octet-stream';
+}
+
+// lê a árvore Names/EmbeddedFiles de um PDF (já carregado com PDFDocument.load)
+// e devolve [{ nome, bytes }] para cada arquivo anexado
+function lerAnexosPdf(pdfDoc) {
+  const { PDFName, PDFDict, PDFArray, decodePDFRawStream } = PDFLib;
+  const catalog = pdfDoc.catalog;
+  if (!catalog.has(PDFName.of('Names'))) return [];
+  const namesDict = catalog.lookup(PDFName.of('Names'), PDFDict);
+  if (!namesDict.has(PDFName.of('EmbeddedFiles'))) return [];
+  const efDict = namesDict.lookup(PDFName.of('EmbeddedFiles'), PDFDict);
+  if (!efDict.has(PDFName.of('Names'))) return [];
+  const efNames = efDict.lookup(PDFName.of('Names'), PDFArray);
+
+  const resultado = [];
+  for (let i = 0; i < efNames.size(); i += 2) {
+    const nomeObj = efNames.lookup(i);
+    const nome = nomeObj.decodeText ? nomeObj.decodeText() : String(nomeObj);
+    const filespecRef = efNames.get(i + 1);
+    const filespecDict = pdfDoc.context.lookup(filespecRef, PDFDict);
+    const efSub = filespecDict.lookup(PDFName.of('EF'), PDFDict);
+    const streamRef = efSub.get(PDFName.of('F'));
+    const stream = pdfDoc.context.lookup(streamRef);
+    const dataBytes = decodePDFRawStream(stream).decode();
+    resultado.push({ nome, bytes: dataBytes });
+  }
+  return resultado;
+}
+
+// repõe os arquivos e o "modo" (anexar/foto/não possui) de cada documento
+function restaurarDocumentos(metaDocumentos, arquivosPorChave) {
+  Object.keys(metaDocumentos || {}).forEach(chave => {
+    const estado = documentosState[chave];
+    if (!estado) return; // documento que não existe mais nesta versão do formulário
+    const metaItem = metaDocumentos[chave] || {};
+    estado.modo = metaItem.modo || null;
+    estado.arquivos = arquivosPorChave[chave] || [];
+    estado.dispensado = false; // recalculado logo em seguida por atualizarConjugeObrigatorio()
+
+    document.querySelectorAll('input[name="modo_' + chave + '"]').forEach(inp => {
+      inp.checked = inp.value === estado.modo;
+      const op = inp.closest('.opcao');
+      if (op) op.classList.toggle('marcada', inp.checked);
+    });
+    renderizarAcaoDoc(chave);
+    renderizarListaDoc(chave);
+  });
+}
+
+// agrupa os itens de texto de uma página (na ordem em que foram desenhados)
+// em "linhas" — funciona porque tanto este sistema quanto outros da mesma
+// família desenham um campo por vez (rótulo + valor, na mesma altura Y)
+function agruparLinhasTexto(items) {
+  const linhas = [];
+  let atualY = null;
+  let atual = '';
+  items.forEach(it => {
+    const bruto = it.str || '';
+    const y = Math.round(it.transform[5]);
+    if (bruto === '') return;
+    if (atualY === null) atualY = y;
+    if (Math.abs(y - atualY) > 2) {
+      linhas.push(atual.trim());
+      atual = '';
+      atualY = y;
+    }
+    atual += bruto;
+  });
+  if (atual.trim()) linhas.push(atual.trim());
+  return linhas.filter(l => l.length > 0);
+}
+
+// lê o texto visível de todas as páginas de um PDF usando pdf.js
+async function extrairLinhasTexto(bytes) {
+  if (typeof pdfjsLib === 'undefined') {
+    throw new Error('O leitor de texto de PDF não carregou. Verifique sua conexão com a internet e tente novamente.');
+  }
+  const doc = await pdfjsLib.getDocument({ data: bytes }).promise;
+  let linhas = [];
+  for (let p = 1; p <= doc.numPages; p++) {
+    const page = await doc.getPage(p);
+    const content = await page.getTextContent();
+    linhas = linhas.concat(agruparLinhasTexto(content.items));
+  }
+  return linhas;
+}
+
+// interpreta as linhas "Rótulo: valor" de um PDF de formulário de locação
+// (deste sistema ou de outro compatível, como o app básico) e monta o
+// mesmo formato de dados usado por restaurarTextos/restaurarRadiosECheckboxes
+function interpretarLinhasFormularioBasico(linhas) {
+  const dados = { textos: {}, radios: {}, checkboxes: {} };
+  const contextosPreenchidos = new Set();
+  let contexto = null;
+
+  const SECOES_IGNORAR = new Set([
+    'LOCATÁRIOS', 'FIADORES', 'DADOS / INFORMAÇÕES', 'UTILIZAÇÃO DO IMÓVEL',
+    'PREFERÊNCIA DE PAGAMENTO', 'ANIMAIS DE ESTIMAÇÃO'
+  ]);
+  const CAMPO_POR_ROTULO = { 'Nome': 'nome', 'Profissão': 'profissao', 'Telefone': 'tel', 'E-mail': 'email' };
+
+  linhas.forEach(linhaBruta => {
+    const linha = linhaBruta.trim();
+    if (linha === 'Locatário (1)') { contexto = 'loc1'; return; }
+    if (linha === 'Locatário (2)') { contexto = 'loc2'; return; }
+    if (linha === 'Fiador (1)') { contexto = 'fiador1'; return; }
+    if (linha === 'Fiador (2)') { contexto = 'fiador2'; return; }
+    if (SECOES_IGNORAR.has(linha)) { contexto = null; return; }
+
+    const m = linha.match(/^([^:]+):\s*(.*)$/);
+    if (!m) return;
+    const rotulo = m[1].trim();
+    const valor = m[2].trim();
+    if (!valor || valor === '—') return; // '—' é o placeholder de "campo vazio" nesta família de formulários
+
+    if (contexto) {
+      contextosPreenchidos.add(contexto);
+      if (CAMPO_POR_ROTULO[rotulo]) {
+        dados.textos[contexto + '_' + CAMPO_POR_ROTULO[rotulo]] = valor;
+      } else if (rotulo === 'Est. civil') {
+        dados.radios[contexto + '_estado_civil'] = valor;
+      }
+      return;
+    }
+
+    if (rotulo === 'A locação será para uso') dados.radios['utilizacao_imovel'] = valor;
+    else if (rotulo === 'Dia preferido para pagamento mensal do aluguel') dados.textos['dia_pagamento'] = valor;
+    else if (rotulo === 'Possui animais de estimação?') dados.radios['tem_animais'] = valor;
+    else if (rotulo === 'Quantidade') dados.textos['animais_qtd'] = valor;
+    else if (rotulo === 'Espécie') dados.checkboxes['animais_especie'] = valor.split(',').map(s => s.trim()).filter(Boolean);
+    else if (rotulo === 'Qual animal') dados.textos['animais_especie_outro'] = valor;
+    else if (rotulo === 'Porte') dados.checkboxes['animais_porte'] = valor.split(',').map(s => s.trim()).filter(Boolean);
+  });
+
+  dados.radios['qtd_locatarios'] = contextosPreenchidos.has('loc2') ? '2' : '1';
+  dados.radios['qtd_fiadores'] = contextosPreenchidos.has('fiador2') ? '2' : '1';
+
+  return dados;
+}
+
+async function carregarFormularioDePdf(arquivoPdf) {
+  const { PDFDocument } = PDFLib;
+  const bytes = new Uint8Array(await arquivoPdf.arrayBuffer());
+  const pdfDoc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+  const anexos = lerAnexosPdf(pdfDoc);
+  const anexoDados = anexos.find(a => a.nome === 'dados_formulario.json');
+
+  let dados;
+  let arquivosPorChave = {};
+  let apenasTexto = false;
+
+  if (anexoDados) {
+    // PDF gerado por este sistema (v2.27+): lê os dados e os documentos originais anexados
+    dados = JSON.parse(new TextDecoder().decode(anexoDados.bytes));
+
+    anexos.forEach(a => {
+      if (a.nome === 'dados_formulario.json') return;
+      const m = a.nome.match(/^doc__(.+?)__(\d+)__(.+)$/);
+      if (!m) return;
+      const chave = m[1];
+      const idx = parseInt(m[2], 10);
+      const nomeOriginal = m[3];
+      const arquivo = new File([a.bytes], nomeOriginal, { type: adivinharMimePorNome(nomeOriginal) });
+      if (!arquivosPorChave[chave]) arquivosPorChave[chave] = [];
+      arquivosPorChave[chave][idx] = arquivo;
+    });
+    Object.keys(arquivosPorChave).forEach(chave => {
+      arquivosPorChave[chave] = arquivosPorChave[chave].filter(Boolean);
+    });
+  } else {
+    // PDF de outro sistema (sem os dados anexados) — lê o texto visível das
+    // páginas e reconstrói os campos a partir dos rótulos ("Nome:", "Est. civil:" etc.)
+    const linhas = await extrairLinhasTexto(bytes);
+    if (!linhas.length) {
+      throw new Error('Não foi possível ler texto neste PDF. Ele precisa ter sido gerado por um formulário de locação compatível.');
+    }
+    dados = interpretarLinhasFormularioBasico(linhas);
+    apenasTexto = true;
+  }
+
+  restaurarTextos(dados);
+  restaurarRadiosECheckboxes(dados);
+  atualizarUtilizacao();
+  atualizarQtd('locatarios');
+  atualizarQtd('fiadores');
+  atualizarAnimais();
+  atualizarEspecieOutro();
+  restaurarDocumentos(dados.documentos || {}, arquivosPorChave);
+  atualizarConjugeObrigatorio();
+  atualizarEstadoBotoes();
+
+  return { apenasTexto };
+}
+
+async function processarCarregarFormulario(fileList) {
+  const arquivo = fileList && fileList[0];
+  const input = document.getElementById('input_carregar_formulario');
+  if (!arquivo) return;
+
+  const prosseguir = confirm('Isso vai preencher o formulário com os dados desse PDF, substituindo o que já estiver digitado. Deseja continuar?');
+  if (!prosseguir) {
+    input.value = '';
+    return;
+  }
+
+  if (typeof PDFLib === 'undefined') {
+    alert('A biblioteca de geração de PDF não carregou. Verifique sua conexão com a internet e tente novamente.');
+    input.value = '';
+    return;
+  }
+
+  const btn = document.getElementById('btn_carregar');
+  const textoOriginal = btn.textContent;
+  btn.textContent = '⏳ Carregando...';
+  btn.disabled = true;
+  try {
+    const resultado = await carregarFormularioDePdf(arquivo);
+    if (resultado.apenasTexto) {
+      alert('Formulário carregado a partir do texto do PDF! Esse PDF não guarda os documentos anexados (RG, comprovantes etc.), então você vai precisar anexá-los novamente. Revise os dados e complemente o que precisar.');
+    } else {
+      alert('Formulário carregado! Revise os dados, complemente o que precisar e gere o PDF novamente quando terminar.');
+    }
+  } catch (e) {
+    alert('Não foi possível carregar esse PDF: ' + e.message);
+  } finally {
+    btn.textContent = textoOriginal;
+    btn.disabled = false;
+    input.value = '';
+  }
 }
 </script>
 
